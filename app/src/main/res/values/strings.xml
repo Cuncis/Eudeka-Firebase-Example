@@ -4,4 +4,6 @@
     <string name="save">Save</string>
     <string name="phone_number">Phone Number</string>
     <string name="email">Email</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -10,8 +10,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.cuncisboss.eudekafirebaseexample.adapter.UserAdapter;
 import com.cuncisboss.eudekafirebaseexample.model.User;
@@ -25,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements UserAdapter.ClickMenuListener {
 
     private AlertDialog.Builder builder;
     private LayoutInflater layoutInflater;
@@ -95,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initAdapter() {
-        adapter = new UserAdapter(userList, this);
+        adapter = new UserAdapter(userList, this, this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -121,26 +127,47 @@ public class MainActivity extends AppCompatActivity {
         final EditText etName = dialogView.findViewById(R.id.et_name);
         final EditText etEmail = dialogView.findViewById(R.id.et_email);
         final EditText etPhone = dialogView.findViewById(R.id.et_phone);
+        Button btnSave = dialogView.findViewById(R.id.btn_save);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = etName.getText().toString();
+                String email = etEmail.getText().toString();
+                String phone = etPhone.getText().toString();
 
-        builder.setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String name = etName.getText().toString();
-                        String email = etEmail.getText().toString();
-                        String phone = etPhone.getText().toString();
+                if (name.isEmpty() || email.isEmpty() || phone.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Please fill the field :(", Toast.LENGTH_SHORT).show();
+                } else {
+                    createUser(name, email, phone);
+                    etName.setText("");
+                    etEmail.setText("");
+                    etPhone.setText("");
+                    Toast.makeText(MainActivity.this, "Success...", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
-                        createUser(name, email, phone);
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                })
-                .create()
-                .show();
+        builder.create().show();
+    }
+
+    @Override
+    public void onClickMenu(final ImageButton btnSelection, final int position) {
+        PopupMenu popupMenu = new PopupMenu(MainActivity.this, btnSelection);
+        popupMenu.inflate(R.menu.menu);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.update:
+                        Toast.makeText(MainActivity.this, "Update clicked " + position, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.delete:
+                        Toast.makeText(MainActivity.this, "Delete clicked " + position, Toast.LENGTH_SHORT).show();
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
     }
 }
 

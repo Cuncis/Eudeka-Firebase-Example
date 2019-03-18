@@ -23,4 +23,13 @@
         android:id="@+id/et_phone"
         android:hint="@string/phone_number"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_save"
+        android:text="@string/save"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"/>
+
 </LinearLayout>

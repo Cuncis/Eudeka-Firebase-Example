@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Eudeka Firebase Example</string>
+    <string name="name">Name</string>
+    <string name="save">Save</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
+</resources>

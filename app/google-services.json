@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "746414671760",
+    "firebase_url": "https://simpleprojecteudeka.firebaseio.com",
+    "project_id": "simpleprojecteudeka",
+    "storage_bucket": "simpleprojecteudeka.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746414671760:android:bb53a3d54e8627b3",
+        "android_client_info": {
+          "package_name": "com.cuncisboss.eudekafirebaseexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "746414671760-a2qhce6oknh17gniggh5kn19gh4d5e6p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ8REzo2883XjQMjc1bgXurl7Z23lQHZI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
